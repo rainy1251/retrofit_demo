@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.retrofit_demo"
+    namespace = "com.iphoto.plus"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.retrofit_demo"
+        applicationId = "com.iphoto.plus"
         minSdk = 24
         targetSdk = 33
         versionCode = 1
