@@ -31,7 +31,7 @@ object RetrofitClient {
         .build()
 
     private val retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl("https://javaclassapi.rb.ejiang.com:9151")
+        .baseUrl("http://139.224.53.155:3000")
         .addConverterFactory(GsonResponseConverterFactory)
         .client(okHttpClient)
         .build()

@@ -1,5 +1,6 @@
 package com.iphoto.plus.internet
 
+import android.util.Log
 import okhttp3.ResponseBody
 import retrofit2.Converter
 import java.lang.reflect.Type
@@ -12,7 +13,7 @@ class GsonResponseBodyConverter<T>(
         val response = value.string()
         val httpResult = JsonUtil.json2Object(response, Response::class.java)
         // 这里是定义成code 200为正常，不正常则抛出之前定义好的异常，在自定义的协程异常处理类中处理
-
+        Log.d("response","response: ${httpResult.message}")
         return if (httpResult.code == 200) {
             JsonUtil.json2Object<T>(response, type)
         } else {

@@ -26,6 +26,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.iphoto.plus.base.MyAppContext
 import com.iphoto.plus.home.LoginBean
+import com.iphoto.plus.home.PhoneBean
+import com.iphoto.plus.home.RegisterBean
 import com.iphoto.plus.home.WeekPlanListBeanItem
 import com.iphoto.plus.internet.CoroutineUtil
 import com.iphoto.plus.internet.HttpRequest
@@ -59,40 +61,22 @@ class MainActivity : ComponentActivity() {
 
 }
 
-private fun login() {
-    val appId = "77bc4d3c-4592-4307-adc4-1d45a019efc8"
-    val deviceId = "92cd07d0-5b4e-4c5e-9cd6-18c436505480"
-    val deviceName = "BKL-AL20"
-    val ipAddress = ""
-    val osName = "10"
-    val password = "f379eaf3c831b04de153469d1bec345e"
-    val userName = "13839131251"
-    val versionName = "4.2.41.50651"
-    val loginBean = LoginBean(
-        appId,
-        deviceId,
-        deviceName,
-        ipAddress,
-        osName,
-        password,
-        userName,
-        versionName
-    )
+private fun register(){
+    val registerBean =RegisterBean("13839131251","666666","Levi","1345")
 
-    HttpRequest.execute {
-        val login = it.login(loginBean)
-        SpUtil.encode("token", login.data.token)
-        SpUtil.encode("gradeId", login.data.gradeId)
+    HttpRequest.execute{
+        it.register(registerBean)
+      //  SpUtil.encode("token", login.data.token)
     }
-
 }
 
+private fun sendCode(){
+    val phoneBean =PhoneBean("13839131251")
 
-//suspend fun getWeekPlanList(): List<WeekPlanListBeanItem> {
-//   val gradeId = SpUtil.decodeString("gradeId")
-//    val weekPlanList = RetrofitClient.apiService.getWeekPlanList(gradeId.toString())
-//    return weekPlanList.data
-//}
+    HttpRequest.execute{
+        it.sendCode(phoneBean)
+    }
+}
 
 
 @Composable
@@ -107,7 +91,7 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
             text = "Hello $name!",
             modifier = modifier
         )
-        Button(onClick = { login() }) {
+        Button(onClick = { sendCode() }) {
             Text(text = "登录")
         }
         Button(onClick = {

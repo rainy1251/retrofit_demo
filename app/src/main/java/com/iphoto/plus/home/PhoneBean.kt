@@ -1,6 +1,5 @@
 package com.iphoto.plus.home
 
-data class LoginBean(
-    val password: String,
+data class PhoneBean(
     val phone: String
 )
